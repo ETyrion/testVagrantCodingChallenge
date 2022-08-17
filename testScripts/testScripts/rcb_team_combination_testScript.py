@@ -17,7 +17,7 @@ class TeamCombination(unittest.TestCase):
         # Verify that total number of players should be 11
         self.assertEqual(team_size, 11)
 
-    @pytest.mark.order(2)
+    @pytest.mark.depends(on=['test_total_no_of_players'])
     def test_no_of_foreign_players(self):
         # Verify that number of foerign players should not exceed 4
         total_no_of_foreign_players = 0
@@ -27,7 +27,7 @@ class TeamCombination(unittest.TestCase):
                 total_no_of_foreign_players = total_no_of_foreign_players + 1
         self.assertLessEqual(total_no_of_foreign_players, 4)
 
-    @pytest.mark.order(3)
+    @pytest.mark.depends(on=['test_total_no_of_players'])
     def test_no_of_wicket_keepers(self):
         # Verify that there should be atleast one wicket-keeper in the team
         total_no_of_wk = 0
